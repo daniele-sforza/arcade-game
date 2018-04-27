@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+h2 {
+    font-family: 'Bungee Shade';
+    color: #b60b0b;
+}
+
+.score {
+    display: none;
+}
+
+#win-sound,
+#lose-sound {
+    display: none;
+}
