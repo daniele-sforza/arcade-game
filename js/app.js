@@ -52,8 +52,17 @@ class Enemy extends Entity {
     if ((this.x + 50 >= player.x) && (this.x <= player.x + 100) &&
         (this.y === player.y)) {
       loseSound.play();
-      player.updateScore(--player.wins);
+      allHearts.pop();
       player.reset();
+      if (allHearts.length === 0) {
+        player.lost = true;
+        document.querySelector('.total-wins').innerText = player.wins;
+        $('#results').modal({backdrop: "static"});
+        $('#results').on('hidden.bs.modal', function (e) {
+          player.lost = false;
+          player.updateScore(0);
+        })
+      }
     }
   }
 }
@@ -64,6 +73,7 @@ class Player extends Entity {
     // create a player with default coordinates and set wins counter
     super(spriteUrl, 200, 380);
     this.wins = 0;
+    this.lost = false;
   }
 
   // Prevent the player going outside the boundaries
@@ -136,7 +146,13 @@ class Selector extends Entity {
   }
 
   // draw the character selection screen
-  update() {
+  update(newGame = false) {
+    if (newGame) {
+      player = null;
+      allHearts = [heart1, heart2, heart3];
+      document.querySelector('.score').style.display = 'none';
+      document.querySelector('.instructions').style.display = 'block';
+    }
     let characters = [
         'images/char-boy.png',
         'images/char-cat-girl.png',
@@ -161,8 +177,12 @@ class Selector extends Entity {
 const enemy1 = new Enemy();
 const enemy2 = new Enemy();
 const enemy3 = new Enemy();
+const heart1 = new Entity('images/Heart.png', 0, 505);
+const heart2 = new Entity('images/Heart.png', 101, 505);
+const heart3 = new Entity('images/Heart.png', 202, 505);
 let allEnemies = [enemy1, enemy2, enemy3],
-    selector = new Selector(),
+    allHearts = [heart1, heart2, heart3],
+    selector,
     player,
     winSound = document.querySelector('#win-sound'),
     loseSound = document.querySelector('#lose-sound');

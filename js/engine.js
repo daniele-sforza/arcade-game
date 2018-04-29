@@ -25,7 +25,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 707;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -44,7 +44,9 @@ var Engine = (function(global) {
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
-        if (player) {
+        if (player && player.lost) {
+          reset();
+        } else if (player) {
           update(dt);
           render();
         }
@@ -163,12 +165,17 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+        allHearts.forEach(function(heart) {
+            heart.render();
+        });
     }
 
     /* create the character selection screen
      */
     function reset() {
-        selector.update();
+        selector = new Selector();
+        selector.update(true);
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -185,7 +192,8 @@ var Engine = (function(global) {
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
         'images/char-princess-girl.png',
-        'images/Selector.png'
+        'images/Selector.png',
+        'images/Heart.png'
     ]);
     Resources.onReady(init);
 

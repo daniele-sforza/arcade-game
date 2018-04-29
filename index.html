@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Classic Arcade Game Clone</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Roboto" rel="stylesheet">
 </head>
@@ -15,8 +16,36 @@
     <div class="instructions">
       Press ← left and right → to select a character and press enter ⏎ to start the game
     </div>
+
+    <!-- sound from https://freesound.org/people/Scrampunk/sounds/345299/ under CC Attribution License http://creativecommons.org/licenses/by/3.0/-->
     <audio src="sounds/345299__scrampunk__okay.wav" id="win-sound" preload="auto"></audio>
+    <!-- sound from https://freesound.org/people/OwlStorm/sounds/404743/ under CC0 License http://creativecommons.org/publicdomain/zero/1.0/ -->
     <audio src="sounds/404743__owlstorm__retro-video-game-sfx-fail.wav" id="lose-sound" preload="auto"></audio>
+
+    <!-- Modal -->
+    <div class="modal fade" id="results" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header bg-success">
+            <h4 class="modal-title">Game Over!</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body">
+            <p>Wins: <span class="total-wins">0</span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Restart</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
