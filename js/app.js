@@ -58,7 +58,7 @@ class Enemy extends Entity {
       if (allHearts.length === 0) {
         player.lost = true;
         document.querySelector('.total-wins').innerText = player.wins;
-        $('#results').modal({backdrop: "static"});
+        $('#results').modal();
         // when closing the dialog resets player properties
         $('#results').on('hidden.bs.modal', function(e) {
           player.lost = false;
@@ -132,6 +132,7 @@ class Selector extends Entity {
 
   // check key pressed: left or right move the selector, return true when pressing enter to start the game
   handleInput(key) {
+    $('#results').modal('hide');
     switch (key) {
       case 'left':
         this.x === 0 ? this.x : (this.x -= 101, this.selected.idx--);
@@ -186,7 +187,7 @@ const heart2 = new Entity('images/Heart.png', 101, 505);
 const heart3 = new Entity('images/Heart.png', 202, 505);
 let allEnemies = [enemy1, enemy2, enemy3],
     allHearts = [heart1, heart2, heart3],
-    selector,
+    selector = new Selector(),
     player,
     winSound = document.querySelector('#win-sound'),
     loseSound = document.querySelector('#lose-sound');
@@ -211,7 +212,6 @@ document.addEventListener('keyup', function(e) {
   }
   // if player is created then handle the key press
   if (player) {
-    selector = null;
     player.handleInput(allowedKeys[e.keyCode]);
   }
 });

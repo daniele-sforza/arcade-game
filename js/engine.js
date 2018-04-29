@@ -179,7 +179,6 @@ var Engine = (function(global) {
   /* create the character selection screen
    */
   function reset() {
-    selector = new Selector();
     selector.update(true);
   }
 
