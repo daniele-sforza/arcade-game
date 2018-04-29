@@ -1,19 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Bungee+Shade|Roboto);
+
 body {
-    text-align: center;
-    font-family: 'Roboto';
-    font-weight: bold;
+  text-align: center;
+  font-family: 'Roboto';
+  font-weight: bold;
 }
 
 h2 {
-    font-family: 'Bungee Shade';
-    color: #b60b0b;
+  font-family: 'Bungee Shade';
+  color: #b60b0b;
 }
 
 .score {
-    display: none;
+  display: none;
 }
 
 #win-sound,
 #lose-sound {
-    display: none;
+  display: none;
 }

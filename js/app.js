@@ -50,15 +50,17 @@ class Enemy extends Entity {
   // if it collide decrease wins counter and reset player position
   checkCollisions(player) {
     if ((this.x + 50 >= player.x) && (this.x <= player.x + 100) &&
-        (this.y === player.y)) {
+      (this.y === player.y)) {
       loseSound.play();
       allHearts.pop();
       player.reset();
+      // if there are no hearts(lives) remaining then show the endgame dialog
       if (allHearts.length === 0) {
         player.lost = true;
         document.querySelector('.total-wins').innerText = player.wins;
         $('#results').modal({backdrop: "static"});
-        $('#results').on('hidden.bs.modal', function (e) {
+        // when closing the dialog resets player properties
+        $('#results').on('hidden.bs.modal', function(e) {
           player.lost = false;
           player.updateScore(0);
         })
@@ -70,7 +72,7 @@ class Enemy extends Entity {
 // Our Player
 class Player extends Entity {
   constructor(spriteUrl) {
-    // create a player with default coordinates and set wins counter
+    // create a player with default coordinates, set wins counter and lost-game flag
     super(spriteUrl, 200, 380);
     this.wins = 0;
     this.lost = false;
@@ -139,7 +141,7 @@ class Selector extends Entity {
         break;
       case 'enter':
         return true;
-      break;
+        break;
     }
     this.update();
     return false;
@@ -147,6 +149,7 @@ class Selector extends Entity {
 
   // draw the character selection screen
   update(newGame = false) {
+    // if called with the flag set to true then reset the variable to start a new game
     if (newGame) {
       player = null;
       allHearts = [heart1, heart2, heart3];
@@ -154,17 +157,17 @@ class Selector extends Entity {
       document.querySelector('.instructions').style.display = 'block';
     }
     let characters = [
-        'images/char-boy.png',
-        'images/char-cat-girl.png',
-        'images/char-horn-girl.png',
-        'images/char-pink-girl.png',
-        'images/char-princess-girl.png'
+      'images/char-boy.png',
+      'images/char-cat-girl.png',
+      'images/char-horn-girl.png',
+      'images/char-pink-girl.png',
+      'images/char-princess-girl.png'
     ];
-    ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     selector.render();
     this.selected.url = characters[this.selected.idx];
     for (let col = 0; col < 5; col++) {
-        ctx.drawImage(Resources.get(characters[col]), col * 101, 83);
+      ctx.drawImage(Resources.get(characters[col]), col * 101, 83);
     }
   }
 }
@@ -172,6 +175,7 @@ class Selector extends Entity {
 
 // Instantiate the objects.
 // Place all enemy objects in an array called allEnemies
+// Place all heart objects in an array called allHearts
 // Place the player object in a variable called player
 // Place the selector in a variable called selector
 const enemy1 = new Enemy();
