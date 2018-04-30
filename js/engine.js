@@ -22,7 +22,8 @@ var Engine = (function(global) {
     win = global.window,
     canvas = doc.createElement('canvas'),
     ctx = canvas.getContext('2d'),
-    lastTime;
+    lastTime,
+    gemTimer;
 
   canvas.width = 505;
   canvas.height = 707;
@@ -99,13 +100,28 @@ var Engine = (function(global) {
     allEnemies.forEach(function(enemy) {
       enemy.update(dt);
     });
+
+    // if there are no gems create a timer with random interval that adds a gem to be rendered
+    if (allGems.length === 0 && !gemTimer) {
+      gemTimer = setInterval(() => {
+        allGems.push(getRandomItemFromArray([gem1, gem2, gem3]));
+        clearInterval(gemTimer);
+        gemTimer = null;
+      }, getRandomArbitrary(3000, 10000));
+    };
+
     player.update();
   }
-  /* check collision with the player for each enemy
+
+  /* check collision with the player for each enemy and gem
    */
   function checkCollisions() {
     allEnemies.forEach(function(enemy) {
       enemy.checkCollisions(player);
+    });
+
+    allGems.forEach(function(gem) {
+      gem.checkCollisions(player);
     });
   }
 
@@ -166,12 +182,17 @@ var Engine = (function(global) {
       enemy.render();
     });
 
+    // render gems
+    allGems.forEach(function(gem) {
+      gem.render();
+    });
+
     player.render();
 
-    /* Loop through all of the objects within the allHearts array and call
+    /* Loop through all of the objects within the player lives array and call
      * the render function.
      */
-    allHearts.forEach(function(heart) {
+    player.lives.forEach(function(heart) {
       heart.render();
     });
   }
@@ -197,7 +218,10 @@ var Engine = (function(global) {
     'images/char-pink-girl.png',
     'images/char-princess-girl.png',
     'images/Selector.png',
-    'images/Heart.png'
+    'images/Heart.png',
+    'images/Gem Green.png',
+    'images/Gem Blue.png',
+    'images/Gem Orange.png'
   ]);
   Resources.onReady(init);
 

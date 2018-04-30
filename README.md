@@ -15,6 +15,12 @@ You move the player left, right, up and down with arrow keys of the keyboard.
 
 Every time the player reaches the water the Wins counter is incremented by 1.
 
+3 type of gems appearing randomly can be collected during the game:
+
+- Green gem gives you 10 points
+- Blue gem gives you 30 points
+- Orange gem gives you 60 points
+
 The player has 3 lives. Every time he collides with an enemy a life is lost.
 
 When all lives are lost the game ends with a dialog showing the score.
@@ -23,4 +29,4 @@ When all lives are lost the game ends with a dialog showing the score.
 
 ### Requirements
 
-This game works in all modern desktop browsers and it must be played with a keyboard.
+This game works in all modern browsers and it must be played with a keyboard.

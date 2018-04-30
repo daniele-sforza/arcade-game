@@ -11,8 +11,8 @@
 <body>
   <h2>Classic Arcade Game Clone</h2>
   <div class="score">
-    Wins: <span class="wins">0</span>
-    <!-- Stars: <span class="stars">0</span> -->
+    Wins: <span class="wins">0</span><br>
+    Score: <span class="points">0</span>
   </div>
   <div class="instructions">
     Press ← left and right → to select a character and press enter ⏎ to start the game
@@ -22,6 +22,8 @@
   <audio src="sounds/345299__scrampunk__okay.wav" id="win-sound" preload="auto"></audio>
   <!-- sound from https://freesound.org/people/OwlStorm/sounds/404743/ under CC0 License http://creativecommons.org/publicdomain/zero/1.0/ -->
   <audio src="sounds/404743__owlstorm__retro-video-game-sfx-fail.wav" id="lose-sound" preload="auto"></audio>
+  <!-- sound from https://freesound.org/people/shnur_/sounds/336933/ under CC0 License http://creativecommons.org/publicdomain/zero/1.0/ -->
+  <audio src="sounds/336933__shnur__coin4.wav" id="gem-sound" preload="auto"></audio>
 
   <!-- Modal -->
   <div class="modal fade" id="results" role="dialog">
@@ -35,9 +37,10 @@
         </div>
         <div class="modal-body">
           <p>Wins: <span class="total-wins">0</span></p>
+          <p>Score: <span class="total-score">0</span></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal">Restart</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
         </div>
       </div>
 
