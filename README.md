@@ -31,4 +31,6 @@ When all lives are lost the game ends with a dialog showing the score.
 
 This game works in all modern browsers and it must be played with a keyboard.
 
-Open `index.html` to run it.
+An internet connection is required to load Bootstrap library.
+
+Open `index.html` to run.
